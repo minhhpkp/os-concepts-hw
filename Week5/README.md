@@ -18,4 +18,4 @@ The following sequence satisfies the deadlock-free criteria:
 The system is deadlock-free.
 ```
 
-Do đó hệ thống đã cho đang không ở trạng thái bế tắc.
+Do đó hệ thống đã cho đang không ở trạng thái bế tắc do có dãy các tiến trình 0, 1, 2, 3 (ứng với P1, P2, P3, P4) thỏa mãn finish[i] == true với i = 0, ..., 3.
