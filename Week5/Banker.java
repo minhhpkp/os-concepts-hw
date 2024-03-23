@@ -16,13 +16,12 @@ public class Banker {
      * @param n          the number of processes in the system.
      * @param m          the number of resource types.
      * @param available  the number of available resources of each type.
-     * @param max        the maximum demand of each process.
      * @param allocation the number of resources of each type currently allocated to
      *                   each process.
      * @param need       the remaining resource need of each process.
      * @return true if the system is in a safe state and false otherwise.
      */
-    public static boolean checkSafety(int n, int m, int[] available, int[][] max, int[][] allocation, int[][] need) {
+    public static boolean checkSafety(int n, int m, int[] available, int[][] allocation, int[][] need) {
         // Initialization
         int[] work = Arrays.copyOf(available, available.length);
         boolean[] finish = new boolean[n];
@@ -74,7 +73,6 @@ public class Banker {
      * @param n          the number of processes in the system.
      * @param m          the number of resources types.
      * @param available  the number of available resources of each type.
-     * @param max        the maximum demand of each process.
      * @param allocation the number of resources of each type currently allocated to
      *                   each process.
      * @param need       the remaining resource need of each process.
@@ -82,7 +80,7 @@ public class Banker {
      * @param request    the number of requested resources of each type.
      * @return true if the request can be safely fulfilled and false otherwise.
      */
-    public static boolean canSafelyGrantResources(int n, int m, int[] available, int[][] max, int[][] allocation,
+    public static boolean canSafelyGrantResources(int n, int m, int[] available, int[][] allocation,
             int[][] need,
             int process, int[] request) {
         if (!isLessThanOrEqualTo(m, request, need[process])) {
@@ -110,7 +108,7 @@ public class Banker {
             needCopy[process][i] -= request[i];
         }
 
-        return checkSafety(n, m, availableCopy, max, allocationCopy, needCopy);
+        return checkSafety(n, m, availableCopy, allocationCopy, needCopy);
     }
 
     /**
@@ -208,15 +206,26 @@ public class Banker {
         int m = scanner.nextInt();
 
         int[][] allocation = readArray(n, m, scanner);
+        int[][] need;
+
+        // if given need
+        // need = readArray(n, m, scanner);
+
+        // if given max only
         int[][] max = readArray(n, m, scanner);
-        int[][] need = readArray(n, m, scanner);
+        need = new int[n][m];
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                need[i][j] = max[i][j] - allocation[i][j];
+            }
+        }
 
         int[] available = new int[m];
         for (int i = 0; i < m; ++i) {
             available[i] = scanner.nextInt();
         }
 
-        boolean safety = checkSafety(n, m, available, max, allocation, need);
+        boolean safety = checkSafety(n, m, available, allocation, need);
 
         if (safety) {
             System.out.println("The system is in a safe state.");
@@ -232,15 +241,26 @@ public class Banker {
         int m = scanner.nextInt();
 
         int[][] allocation = readArray(n, m, scanner);
+        int[][] need;
+
+        // if given need
+        // need = readArray(n, m, scanner);
+
+        // if given max only
         int[][] max = readArray(n, m, scanner);
-        int[][] need = readArray(n, m, scanner);
+        need = new int[n][m];
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                need[i][j] = max[i][j] - allocation[i][j];
+            }
+        }
 
         int[] available = new int[m];
         for (int i = 0; i < m; ++i) {
             available[i] = scanner.nextInt();
         }
 
-        boolean grantable = canSafelyGrantResources(n, m, available, max, allocation, need, process, request);
+        boolean grantable = canSafelyGrantResources(n, m, available, allocation, need, process, request);
 
         if (grantable) {
             System.out.printf("Process #%d's request can be granted.\n", process);
