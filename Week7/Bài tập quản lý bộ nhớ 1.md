@@ -7,10 +7,14 @@ Với địa chỉ ảo $9EF_{16} = 2543_{10}$, page number $= 2543_{10} \div 25
 
 Tương tự với 2 địa chỉ ảo còn lại, ta có:
 
-| Logical address | Page number = Logical address ÷ Page size | Page offset = Logical address mod Page size | Frame number | Physical address = Frame number \* Frame size + Page offset |
-| --------------- | ----------------------------------------- | ------------------------------------------- | ------------ | ----------------------------------------------------------- |
-| 700             | 7                                         | 0                                           | -            | Không tính được                                             |
-| 0FF             | 0                                         | 255                                         | -            | Không tính được                                             |
+| Logical address | Page number = Logical address ÷ Page size | Page offset = Logical address mod Page size | Frame number | Physical address = Frame number \* Frame size + Page offset     |
+| --------------- | ----------------------------------------- | ------------------------------------------- | ------------ | --------------------------------------------------------------- |
+| 700             | 7                                         | 0                                           | -            | Không có địa chỉ vật lý tương ứng vì page chưa được tải vào RAM |
+| 0FF             | 0                                         | 255                                         | -            | Không có địa chỉ vật lý tương ứng vì page chưa được tải vào RAM |
+
+b. Số đơn vị bộ nhớ tối đa khi sử dụng 12 bit để đánh địa chỉ là $2^{12}$.  
+Dung lượng bộ nhớ chính $=$ số đơn vị bộ nhớ $\times$ kích thước mỗi đơn vị bộ nhớ $= 2^{12} \times 4\ B = 2^{14}\ B = 16384\ B$.  
+Số lượng frame $=$ Dung lượng bộ nhớ chính $\div$ Kích thước frame $= 16384 \div 256 = 64$.
 
 ## Bài 2
 
@@ -29,6 +33,8 @@ Kết quả thực thi các chiến lược phân mảnh first-fit, best-fit và
 |         |  **375**  | **115**  |    135    |
 |         |    17     |    10    |    125    |
 |         |    125    |          |           |
+
+Trong đó, các ô được bôi đậm là những vùng bộ nhớ được cấp phát cho các tiến trình.
 
 Chiến lược first-fit và best-fit có thể cấp phát bộ nhớ cho tất cả các tiến trình và có hiệu quả cao nhất. Chiến lược worst-fit không cấp phát được bộ nhớ cho tiến trình cuối cùng nên có hiệu quả thấp hơn.
 
