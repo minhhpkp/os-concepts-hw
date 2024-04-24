@@ -109,18 +109,14 @@ $$
 
 ### Bài 9.35
 
-Đồ thị sau biểu diễn việc phân chia thành các buddy của toàn bộ segment 1024 KB để cấp phát 4 yêu cầu 6 KB, 250 B, 900 B, 1500 B và 7 KB:
+Đồ thị biểu diễn việc phân chia thành các buddy của toàn bộ segment 1024 KB để cấp phát 4 yêu cầu 6 KB, 250 B, 900 B, 1500 B và 7 KB được lưu ở file sau: [After Allocations](./images/Before.svg) (file lớn vì đồ thị là cây nhị phân có đến 13 cấp, cần tải về mới xem được).
 
-![Before](./images/Before.svg)
-
-Đây là phần của đồ thị trên mà chứa các buddy được cấp phát cho các yêu cầu:
+Đây là phần thu gọn của đồ thị trên mà tập trung vào các buddy được cấp phát cho các yêu cầu:
 
 ![BeforeZoomed](./images/BeforeZoomed.svg)
 
-Đồ thị sau biểu diễn các buddy của toàn bộ segment 1024 KB sau khi giải phóng 250 B, 900 B và 1500 B:
+Đồ thị biểu diễn các buddy của toàn bộ segment 1024 KB sau khi giải phóng 250 B, 900 B và 1500 B được lưu ở file sau: [After Memory Releases](./images/AfterReleases.svg) (file lớn vì đồ thị là cây nhị phân có đến 9 cấp, cần tải về mới xem được).
 
-![After](./images/AfterReleases.svg)
-
-Đây là phần của đồ thị trên mà chứa các buddy đã được cấp phát:
+Đây là phần thu gọn của đồ thị trên mà tập trung vào các buddy có liên quan đến các yêu cầu của đề bài:
 
 ![AfterZoomed](./images/AfterZoomed.svg)
