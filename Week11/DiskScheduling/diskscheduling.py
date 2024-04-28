@@ -78,6 +78,15 @@ class DiskScheduling(ABC):
             ax.set_ylabel("Time")
             ax.set_title(f"{self.__str__()} Disk Scheduling")
 
+            for point in points:
+                ax.annotate(
+                    f"{point[0]}",
+                    xy=point,
+                    xytext=(-5, 10),
+                    textcoords="offset points",
+                    color="red",
+                )
+
             # Set custom X-axis ticks
             ax.set_xticks([0, *[point[0] for point in points], max_cylinder_index])
 
